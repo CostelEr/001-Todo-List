@@ -6,7 +6,7 @@ import { Itask } from "./Interfaces";
 const App: FC = () => {
   const [task, setTask] = useState<string>("");
   const [deadLine, setdeadLine] = useState<number>(0);
-  const [todoList, settodoList] = useState<Itask[]>([]);
+  const [todoList, setTodoList] = useState<Itask[]>([]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     if (event.target.name === "task") {
@@ -18,15 +18,15 @@ const App: FC = () => {
 
   const addTask = (): void => {
     const newTask = { taskName: task, deadLine: deadLine };
-    settodoList([...todoList, newTask]);
+    setTodoList([...todoList, newTask]);
     setTask("");
     setdeadLine(0);
   };
 
   const completeTask = (taskNameToDelete: string): void => {
-    settodoList(
+    setTodoList(
       todoList.filter((task) => {
-        return task.taskName != taskNameToDelete;
+        return task.taskName !== taskNameToDelete;
       })
     );
   };
